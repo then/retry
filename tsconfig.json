@@ -1,0 +1,10 @@
+{
+  "extends": "@forbeslindesay/tsconfig",
+  "compilerOptions": {
+    "outDir": "lib/commonjs",
+    "incremental": false,
+    "rootDir": "src",
+    "sourceMap": false
+  },
+  "include": ["src"]
+}
