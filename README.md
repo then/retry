@@ -2,6 +2,8 @@
 
 Retry functions that return promises
 
+[![Rolling Versions](https://img.shields.io/badge/Rolling%20Versions-Enabled-brightgreen)](https://rollingversions.com/then/then-retry)
+
 ## Installation
 
 ```
