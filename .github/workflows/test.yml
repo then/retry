@@ -30,6 +30,6 @@ jobs:
       - run: cd repo && yarn prettier:check
       - run: cd repo && yarn test
       - run: cd repo && npm pack
-      - run: cp repo/test test
+      - run: cp -r repo/test test
       - run: cd test && npm i ../repo/then-retry-0.0.0.tgz
       - run: cd test && node index
