@@ -35,3 +35,12 @@ export default async function retry<T>(
     }
   }
 }
+
+export function withRetry<TArgs extends any[], TResult>(
+  fn: (...args: TArgs) => Promise<TResult>,
+  options: Options = {},
+): (...args: TArgs) => Promise<TResult> {
+  return async (...args) => {
+    return retry(() => fn(...args), options);
+  };
+}
