@@ -2,29 +2,29 @@
   "name": "then-retry",
   "version": "0.0.0",
   "description": "Retry a function that returns a promise",
-  "main": "./lib/commonjs/index.js",
+  "main": "./lib/commonjs/index.cjs",
   "types": "./lib/es/index.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "tsc && (echo \";module.exports = exports.default;Object.assign(module.exports, exports);\" >> lib/commonjs/index.js) && tsc -p tsconfig.es.json && mv lib/es/index.js lib/es/index.mjs",
+    "build": "yarn build:commonjs && yarn build:esm",
+    "build:commonjs": "tsc && mv lib/commonjs/index.js lib/commonjs/index.cjs && (echo \";module.exports = exports.default;Object.assign(module.exports, exports);\" >> lib/commonjs/index.cjs)",
+    "build:esm": "tsc -p tsconfig.es.json && mv lib/es/index.js lib/es/index.mjs",
     "lint": "tslint './src/**/*.{ts,tsx}' -t verbose -p .",
     "prettier:write": "prettier --ignore-path .gitignore --write './**/*.{md,json,yaml,js,jsx,ts,tsx}'",
     "prettier:check": "prettier --ignore-path .gitignore --list-different './**/*.{md,json,yaml,js,jsx,ts,tsx}'",
-    "test": "node test/local"
+    "test": "node test/test.cjs && node test/test.mjs"
   },
   "files": [
-    "lib/commonjs/index.js",
+    "lib/commonjs/index.cjs",
     "lib/es/index.mjs",
     "lib/es/index.d.ts"
   ],
   "exports": {
-    ".": [
-      {
-        "import": "./lib/es/index.mjs",
-        "require": "./lib/commonjs/index.js",
-        "default": "./lib/commonjs/index.js"
-      },
-      "./lib/commonjs/index.js"
-    ]
+    ".": {
+      "types": "./lib/es/index.d.ts",
+      "import": "./lib/es/index.mjs",
+      "default": "./lib/commonjs/index.cjs"
+    }
   },
   "repository": {
     "type": "git",
@@ -38,5 +38,6 @@
     "prettier": "^2.0.5",
     "tslint": "^6.1.2",
     "typescript": "^3.8.3"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
