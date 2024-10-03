@@ -13,14 +13,14 @@ yarn add then-retry
 ## Usage
 
 ```js
-import retry, {withRetry} from 'then-retry';
+import retry, { withRetry } from "then-retry";
 
 // to retry a one of operation
-await retry(() => someAsyncOp('hello world'));
+await retry(() => someAsyncOp("hello world"));
 
 // to retry every call of a given function
 const someRetriedOp = withRetry(someAsyncOp);
-await someRetriedOp('hello world');
+await someRetriedOp("hello world");
 ```
 
 The following options can be passed as a second arg to either `retry` or `withRetry`:
